@@ -11,6 +11,11 @@ module.exports = (app, version) => {
         userMiddleWare.validateSignupParams,
         commonLib.fetchIPAdress,
         userController.signUpStepOne
-
     );
-}
+    app.post(
+        version + '/login',
+        userMiddleWare.validateSignupParams,
+        commonLib.fetchIPAdress,
+        userController.signUpStepOne
+    );
+};

@@ -21,7 +21,7 @@ let signUpStepOne = (req, res, next) => {
 
 
     return commonLib.saltPassword(password, (err, maskedPassword) => {
-        if ( maskedPassword ) {
+        if (maskedPassword) {
             let userObj = {
                 isUser: true,
                 'userData.firstName': firstName,
@@ -31,27 +31,34 @@ let signUpStepOne = (req, res, next) => {
                 'userData.salt': maskedPassword.salt,
                 'userData.gender': gender
             };
-            return userHelper.findAndUpdateUserAccount({ email: email }, userObj, {
+            return userHelper.findAndUpdateUserAccount({email: email}, userObj, {
                 upsert: true,
                 new: true,
                 setDefaultsOnInsert: true
             }).then(userCreated => {
-                if ( userCreated ) {
-                    return responseModule.successResponse(res, {
-                        success: 1,
-                        message: 'User signup completed successfully.',
-                        data: userHelper.generateAccountResponse(req.user, userType) || {}
+                if (userCreated) {
+                    req.logIn(userCreated, err => {
+                        if (err) {
+                            return next({ msgCode: 5055 });
+                        }
+                        return responseModule.successResponse(res, {
+                            success: 1,
+                            message: 'User signup completed successfully.',
+                            data: userHelper.generateAccountResponse(req.user, userType) || {}
+                        });
                     });
 
+
                 } else {
-                    logController.createLog('error', 'high', req.user.email + ' tried to signup but failed ', 'sp', req.user._id, {err}, req.clientIp);
-                    return next({ msgCode: 5036 });
+                    logController.createLog('error', 'high', req.body.email + ' tried to signup but failed ', 'user', 'signup', {err}, req.clientIp);
+                    return next({msgCode: 5036});
                 }
             }).catch(err => {
-                return next({ msgCode: 5036 });
+                logController.createLog('error', 'high', req.body.email + ' tried to signup but failed ', 'user', 'signup', {err}, req.clientIp);
+                return next({msgCode: 5036});
             });
         } else {
-            return next({ msgCode: 5052 });
+            return next({msgCode: 5052});
         }
     });
 };

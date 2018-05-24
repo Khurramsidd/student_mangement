@@ -13,7 +13,7 @@ let queryUser = (queryObject, projectObject) => {
 };
 
 let generateAccountResponse = (user, userType) => {
-    if ( userType === 'user' ) {
+    if (userType === 'user') {
         return {
             id: user._id,
             firstName: user.userData.firstName || '',
@@ -21,14 +21,25 @@ let generateAccountResponse = (user, userType) => {
             email: user.email,
             userType: userType,
             langPreference: user.userData.langPreference
-          /*  facebookId: user.userData.facebookId,
-            facebookEmailUpdate: user.userData.facebookEmailUpdate,
-            facebookPasswordUpdate: user.userData.facebookPasswordUpdate,*/
+            /*  facebookId: user.userData.facebookId,
+              facebookEmailUpdate: user.userData.facebookEmailUpdate,
+              facebookPasswordUpdate: user.userData.facebookPasswordUpdate,*/
         };
+    } else {
+        return;
     }
+};
+
+let findAndUpdateUserAccount = (queryObject, updatedObj, newDoc) => {
+    return userAccount.findOneAndUpdate(queryObject, {$set: updatedObj}, newDoc).then(updatedUser => {
+        return updatedUser;
+    }).catch(err => {
+        return;
+    });
 };
 
 module.exports = {
     queryUser,
-    generateAccountResponse
+    generateAccountResponse,
+    findAndUpdateUserAccount
 };

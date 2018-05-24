@@ -1,6 +1,4 @@
-/**
- * Created by Raza on 7/18/2017.
- */
+
 ( function () {
     angular.module('BlurAdmin.pages').service('GlobalServices', GlobalServices);
 

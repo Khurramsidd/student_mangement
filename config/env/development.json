@@ -1,12 +1,12 @@
 {
   "PORT": 3000,
   "mongodb": {
-    "host": "mongodb://localhost:27017/",
-    "uri": "mongodb://localhost:27017/studentManagement",
-    "db_name": "studentManagement",
+    "host": "mongodb://khurram.saeed:brokhurram1@ds129540.mlab.com:29540/",
+    "uri": "mongodb://khurram.saeed:brokhurram1@ds129540.mlab.com:29540/student_managment",
+    "db_name": "student_managment",
     "credentials": {
-      "username": "",
-      "password": ""
+      "username": "khurram.saeed",
+      "password": "brokhurram1"
     }
   },
   "session": {

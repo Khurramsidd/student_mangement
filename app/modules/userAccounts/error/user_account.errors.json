@@ -76,5 +76,11 @@
       "EN": "There was some error in hashing of password.",
       "FR": "Il y avait une erreur dans le hachage du mot de passe."
     }
+  },
+  "5055": {
+    "msg": {
+      "EN": "There was some error in user login.",
+      "FR": "Il y a eu une erreur dans la connexion de l'utilisateur."
+    }
   }
 }

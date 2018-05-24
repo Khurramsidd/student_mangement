@@ -1,6 +1,4 @@
-/**
- * Created by Raza on 8/1/2017.
- */
+
 ( function () {
     angular.module('sp').service('spService', [ '$q', 'apiService', function ($q, apiService) {
 

@@ -1,6 +1,4 @@
-/**
- * Created by Raza on 1/6/2018.
- */
+
 const mongoose = require('mongoose'),
     Logger = mongoose.model('Logger'),
     winston = require('winston');

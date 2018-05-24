@@ -1,6 +1,4 @@
-/**
- * Created by Raza on 1/6/2018.
- */
+
 'use strict';
 
 const mongoose = require('mongoose'),
