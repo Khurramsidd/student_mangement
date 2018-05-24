@@ -1,6 +1,6 @@
-# PamerMoi
+# StudentManagement
 
-PamperMoi is a platform to packages services on demand.
+StudentManagement is a platform to manage students records.
 
 Technology Stack :
 
