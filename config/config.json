@@ -1,0 +1,25 @@
+{
+  "FORCE_MONGO_SYNC": "false",
+  "expressSessionSecret": "$uper$ecret$e$$ionKey",
+  "enableLog": "false",
+  "enableMongoDebugging": false,
+  "userTypes": [
+    "user",
+    "admin"
+  ],
+  "genderTypes": [
+    "male",
+    "female",
+    "any"
+  ],
+  "timePeriod": [
+    "day",
+    "week",
+    "month"
+  ],
+  "deviceTypes": [
+    "ios",
+    "android",
+    "web"
+  ]
+}

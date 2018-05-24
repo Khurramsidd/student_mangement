@@ -1,0 +1,20 @@
+doctype html
+html(lang='en', ng-app='BlurAdmin')
+    base(href='/admin/')
+    include ../includes/head
+    body
+        span(us-spinner spinner-key="spinner-1")
+        div(class="body-bg")
+        main(ng-if='$pageFinishedLoading ', ng-class="{ 'menu-collapsed': $baSidebarService.isMenuCollapsed()}")
+            ba-sidebar
+            page-top
+            .al-main
+                .al-content
+                    content-top
+                    div(ui-view='')
+            back-top
+        #preloader-img(ng-show='!$pageFinishedLoading')
+            img(src="../../assets/img/logo.png")
+        #preloader(ng-show='!$pageFinishedLoading')
+            div
+        include ../includes/foot

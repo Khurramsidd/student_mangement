@@ -1,0 +1,56 @@
+<div class="widgets">
+    <div class="row">
+        <div class="col-md-12">
+            <div ba-panel ba-panel-title="Jobs Listing" ba-panel-class="with-scroll">
+                <div class="horizontal-scroll">
+                    <table class="table table-hover" st-table="listing.jobsScheduled"
+                           st-pipe="listing.getAllJobs">
+                        <thead>
+                        <tr class="black-muted-bg sortable">
+                            <th class="table-id">#</th>
+                            <th>Location</th>
+                            <th>User Name</th>
+                            <th>Service Provider</th>
+                            <th ng-if="listing.statusTable == 'Completed'">Service Provider Earning</th>
+                            <th>Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="item in listing.jobsScheduled track by $index">
+                            <td class="table-id">{{listing.currentPage*10+$index + 1}}</td>
+                            <td>{{item.address || 'N/A'}}</td>
+                            <td ng-if="item.userId != null">{{(item.userId.userData.firstName + " " +
+                                item.userId.userData.lastName)}}
+                            </td><td ng-if="item.userId == null">{{'N/A'}}</td>
+                            <td ng-if="item.spId != null">{{(item.spId.spData.firstName + " " + item.spId.spData.lastName) || 'N/A'}}</td>
+                            <td ng-if="item.spId == null">{{'N/A'}}</td>
+                            <td ng-if="listing.statusTable == 'Completed'">
+                                {{item.jobAmountObj.spEarnedAmount}}
+                            </td>
+                            <!--<td>{{item.jobDateTime || 'N/A'}}</td>-->
+                            <!--<td>{{item.jobDateTime * 1000 | date: 'd MMM, hh:mm a'}}</td>-->
+                            <td class="action-td">
+                                <span class="buttons">
+                                    <a class="btn btn-primary" href="job/{{item._id}}">View</a>
+                                </span>
+                            </td>
+                        </tr>
+                        </tbody>
+                        <tbody>
+                        <tr>
+                            <td ng-show="listing.noUserFound" class="text-center" colspan="7">No jobs found.</td>
+                        </tr>
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <td colspan="7" class="text-center">
+                                <div st-pagination="" st-items-by-page="listing.itemsPerPage"></div>
+                            </td>
+                        </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

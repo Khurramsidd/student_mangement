@@ -1,0 +1,9 @@
+doctype html
+html(lang='en', ng-app='roadRooApp')
+    base(href='/')
+    include ./includes/web_header
+    body(class="body-bg container-fluid no-padding")
+        section.content(ui-view)
+            block content
+        include ./includes/web_footer
+

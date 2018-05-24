@@ -1,0 +1,108 @@
+<div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12"
+         ba-panel ba-panel-title="Analytics" ba-panel-class="">
+        <div class="">
+            <div class="mainDashLeaftlet">
+
+                <div class="col-sm-6 dashAnalyticsContainer">
+                    <div class="dashbox panel panel-default">
+                        <div class="panel-body">
+                            <div class="col-sm-3 faIconCustom">
+                                <i class="fa fa-users fa-3x icon-color"></i>
+                            </div>
+                            <div class="col-sm-9 Data">
+                                <h1> {{dashBoard.analytics.users||0}}</h1>
+                                <h3>Total Users</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 dashAnalyticsContainer">
+                    <div class="dashbox panel panel-default">
+                        <div class="panel-body">
+                            <div class="col-sm-3 faIconCustom">
+                                <i class="fa fa-street-view fa-3x icon-color"></i>
+                            </div>
+                            <div class="col-sm-9 Data">
+                                <h1> {{dashBoard.analytics.sp||0}}</h1>
+                                <h3>Total   Service Providers</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 mainDashLeaftlet">
+                    <div class="dashbox panel panel-default">
+                        <div class="panel-body">
+                            <div class="col-sm-3 faIconCustom">
+                                <i class="fa fa-briefcase fa-3x icon-color"></i>
+                            </div>
+                            <div class="col-sm-9 Data">
+                                <h1> {{dashBoard.analytics.jobs||0}}</h1>
+                                <h3>Total Jobs</h3>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 mainDashLeaftlet">
+                    <div class="dashbox panel panel-default">
+                        <div class="panel-body">
+                            <div class="col-sm-3 faIconCustom">
+                                <i class="fa fa-usd fa-3x icon-color"></i>
+                            </div>
+                            <div class="col-sm-9 Data">
+                                <h1> {{dashBoard.analytics.spEarning | number: 2}}</h1>
+                                <h3>Service Provider's Earnings</h3>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 mainDashLeaftlet">
+                    <div class="dashbox panel panel-default">
+                        <div class="panel-body">
+                            <div class="col-sm-3 faIconCustom">
+                                <i class="fa fa-briefcase fa-3x icon-color"></i>
+                            </div>
+                            <div class="col-sm-9 Data">
+                                <h1> {{dashBoard.analytics.jobsCompleted}}</h1>
+                                <h3>Completed Jobs</h3>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 mainDashLeaftlet">
+                    <div class="dashbox panel panel-default">
+                        <div class="panel-body">
+                            <div class="col-sm-3 faIconCustom">
+                                <i class="fa fa-usd fa-3x icon-color"></i>
+                            </div>
+                            <div class="col-sm-9 Data">
+                                <h1> {{dashBoard.analytics.earnings | number: 2}}</h1>
+                                <h3>Total PamperMoi  Earning</h3>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 mainDashLeaftlet">
+                    <div class="dashbox panel panel-default">
+                        <div class="text-center panel-body">
+                            <div class="col-sm-3 faIconCustom">
+                                <i class="fa fa-usd fa-3x"></i>
+                            </div>
+                            <div class="col-sm-9 Data">
+                                <h1 class="ng-binding">{{dashBoard.analytics.total | number:2}}</h1>
+                                <h4>Total Amount</h4>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

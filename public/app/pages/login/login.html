@@ -1,0 +1,39 @@
+<div class="widgets">
+    <div class="row">
+        <div class="col-lg-6 col-md-6 col-lg-offset-3 col-md-offset-3 "
+             ba-panel ba-panel-title="Login" ba-panel-class="" style="margin-top: 15vh;">
+            <form class="form-horizontal" name="login.loginForm" ng-submit="login.login(login.signInUser);">
+                <div class="form-group">
+                    <div class="col-sm-12">
+                        <input type="email" class="form-control" id="email" name="email" placeholder="Email"
+                               ng-model="login.signInUser.email" required>
+                        <!--ng-model="login.signInUser.userId" required>-->
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-12">
+                        <input type="password" class="form-control" id="password" name="password"
+                               placeholder="Password" ng-model="login.signInUser.password" required>
+                    </div>
+                </div>
+                <!--<div class="form-group">-->
+                <!--<div class="col-sm-12">-->
+                <!--<div class="checkbox">-->
+                <!--<label class="custom-checkbox">-->
+                <!--<input type="checkbox">-->
+                <!--<span>Remember me</span>-->
+                <!--</label>-->
+                <!--</div>-->
+                <!--</div>-->
+                <!--</div>-->
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-8">
+                        <div class="button-wrapper">
+                            <button type="submit" class="btn btn-md btn-block btn-warning">Sign in</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

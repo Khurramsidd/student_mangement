@@ -1,0 +1,36 @@
+<div class="row">
+
+    <div class="modal-content">
+        <form class="form-horizontal" enctype="multipart/form-data" name="SendMsg.SendMsgForm" ng-submit="SendMsg.sendMessagesToSeekers(SendMsg.sendMsgData);" >
+            <div class="modal-header">
+                <button type="button" class="close" ng-click="close()" aria-label="Close">
+                    <em class="ion-ios-close-empty sn-link-close"></em>
+                </button>
+                <h4 class="modal-title">Send Message to Seekers</h4>
+            </div>
+
+            <div class="modal-body">
+
+                <div class="form-group">
+                    <div class="col-sm-12">
+                        <input type="text" class="form-control" id="promotionLabel" name="promotionLabel" placeholder="Promotion Label"
+                               ng-model="SendMsg.sendMsgData.code" maxlength="30" minlength="3" readonly required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-12">
+                        <textarea class="form-control" rows="5" id="message" placeholder="Message" name="message"
+                                  ng-model="SendMsg.sendMsgData.message" maxlength="250" minlength="10" style="resize: none" required></textarea>
+                    </div>
+                </div>
+
+            </div>
+            <hr>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary">Send</button>
+            </div>
+
+        </form>
+    </div>
+
+</div>

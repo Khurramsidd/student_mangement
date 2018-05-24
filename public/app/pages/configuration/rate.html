@@ -1,0 +1,63 @@
+<div class="widgets" ng-init="rate.getRates()">
+    <div class="row">
+        <div class="col-md-12">
+            <div ba-panel ba-panel-title="General Rate" ba-panel-class="with-scroll">
+                <div class="horizontal-scroll">
+
+                    <form name="updateRate" ng-submit ="rate.updateRate()">
+                        <div class="form-group">
+                            <label for="charges">PamperMoi Charges %</label>
+                            <input type="number" class="form-control" id="charges" placeholder="Charges"
+                                   name="charges" ng-model="rate.rate.companyPercentage" min="1" max="100" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="cancelRate">Cancel Rate %</label>
+                            <input type="number" class="form-control" id="cancelRate" placeholder="Cancel Rate"
+                                   name="cancelRate" ng-model="rate.rate.cancellationChargesPercentage" min="1" max="100" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="cancelRate">Tax %</label>
+                            <input type="number" class="form-control" id="tax" placeholder="Tax Percentage"
+                                   name="cancelRate" ng-model="rate.rate.taxPercentage" min="1" max="100" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="minCancellationMinutes">Allow Job Time out in Minutes</label>
+                            <input type="number" class="form-control" id="minCancellationMinutes"
+                                   placeholder="Job cancellation Minutes" name="cancelRate"
+                                   ng-model="rate.rate.jobTimeOutInMinutes" min="1" max="" required>
+                        </div><!--
+                        <div class="form-group">
+                            <label for="minCancellationMinutes">Maximum Job Acceptance Time</label>
+                            <input type="number" class="form-control" id="maxJobAcceptanceTime"
+                                   placeholder="Maximum Job Acceptance Time" name="cancelRate"
+                                   ng-model="rate.rate.maxJobAcceptanceTime" min="1" max="" required>
+                        </div>-->
+                        <div class="form-group">
+                            <label for="minCancellationMinutes">Maximum Job Cancel Per Day</label>
+                            <input type="number" class="form-control" id="maxNumOfCancelPerDay"
+                                   placeholder="Maximum Job Cancel Per Day" name="maxNumOfCancelPerDay"
+                                   ng-model="rate.rate.spJobCancelCount" min="1" max="" required>
+                        </div>
+               <!--         <div class="form-group">
+                            <label for="minCancellationMinutes">Cancel message before time</label>
+                            <input type="string" class="form-control" id="cancelMsgBeforeTime"
+                                   placeholder="Cancel message before time" name="cancelRate"
+                                   ng-model="rate.rate.cancelMsgBeforeTime" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="minCancellationMinutes">Cancel message after time</label>
+                            <input type="string" class="form-control" id="cancelMsgAfterTime"
+                                   placeholder="Cancel message after time" name="maxNumOfCancelPerDay"
+                                   ng-model="rate.rate.cancelMsgAfterTime" min="1" max="" required>
+                        </div>-->
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary"
+                                    >Update
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,80 @@
+{
+  "5000": {
+    "msg": {
+      "EN": "Please Provide Email.",
+      "FR": "french msg"
+    }
+  },
+  "5001": {
+    "msg": {
+      "EN": "Please provide valid email.",
+      "FR": "french msg"
+    }
+  },
+  "5003": {
+    "msg": {
+      "EN": "Please provide firstName.",
+      "FR": "french msg"
+    }
+  },
+  "5004": {
+    "msg": {
+      "EN": "Please provide valid firstName.",
+      "FR": "french msg"
+    }
+  },
+  "5005": {
+    "msg": {
+      "EN": "Please provide lastName.",
+      "FR": "french msg"
+    }
+  },
+  "5006": {
+    "msg": {
+      "EN": "Please provide valid lastName.",
+      "FR": "french msg"
+    }
+  },
+  "5007": {
+    "msg": {
+      "EN": "Please provide password.",
+      "FR": "french msg"
+    }
+  },
+  "5008": {
+    "msg": {
+      "EN": "Please provide valid password.",
+      "FR": "french msg"
+    }
+  },
+  "5009": {
+    "msg": {
+      "EN": "Please provide userType.",
+      "FR": "french msg"
+    }
+  },
+  "5010": {
+    "msg": {
+      "EN": "Please provide gender.",
+      "FR": "french msg"
+    }
+  },
+  "5011": {
+    "msg": {
+      "EN": "Please provide valid gender.",
+      "FR": "french msg"
+    }
+  },
+  "5036": {
+    "msg": {
+      "EN": "Error occured in user sign up.",
+      "FR": "Une erreur s'est produite lors de l'inscription de l'utilisateur."
+    }
+  },
+  "5052": {
+    "msg": {
+      "EN": "There was some error in hashing of password.",
+      "FR": "Il y avait une erreur dans le hachage du mot de passe."
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "PORT": 3000,
+  "mongodb": {
+    "host": "mongodb://localhost:27017/",
+    "uri": "mongodb://localhost:27017/studentManagement",
+    "db_name": "studentManagement",
+    "credentials": {
+      "username": "",
+      "password": ""
+    }
+  },
+  "session": {
+    "secret": "*&studentManagement&#"
+  },
+
+  "confirmationCodeLength": 4,
+  "forgetPassCodeExpiryMinutes": 4320,
+  "confirmAcctCodeExpiryMinutes": 4320,
+  "postedJobApplicantsIntervalInMinutes": 5,
+
+  "facebook": {
+    "clientId": "171715770136456",
+    "clientSecret": "a8147c3968363cc5b884aac4cf94e0a9",
+    "callback": ""
+  }
+}

@@ -1,0 +1,67 @@
+<div class="widgets">
+    <div class="row">
+        <div class="col-lg-6 col-md-6 col-lg-offset-3 col-md-offset-3 "
+             ba-panel ba-panel-title="Add PromoCode" ba-panel-class="">
+            <form class="form-horizontal" name="promocode.promoCodeForm"
+                  ng-submit="pCode.save(pCode.promoCodeInformation);">
+                <div class="form-group">
+                    <div class="col-sm-3 settingTop">
+                        PromoCode
+                    </div>
+                    <div class="col-sm-9">
+                        <input class="form-control" id="promoCode" name="promoCode" placeholder="PromoCode"
+                               ng-model="pCode.promoCodeInformation.promoCode" maxlength="6" pattern="[^\s]+" title="Don't use the white space." required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-3 settingTop">
+                        Start Date
+                    </div>
+                    <div class="col-sm-9">
+                        <input type="date" class="form-control" id="startDate" name="startDate"
+                               ng-model="pCode.promoCodeInformation.startDate" required onkeydown="return false"
+                               min="{{pCode.todayDate}}"
+                        >
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-3 settingTop">
+                        End Date
+                    </div>
+                    <div class="col-sm-9">
+                        <input type="date" class="form-control" id="endDate" name="endDate"
+                               ng-model="pCode.promoCodeInformation.endDate" required onkeydown="return false"
+                               min="{{pCode.todayDate}}"
+                        >
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-3 settingTop">
+                        Percentage
+                    </div>
+                    <div class="col-sm-9">
+                        <input class="form-control" id="percentage" name="percentage"
+                               placeholder="Percentage" ng-model="pCode.promoCodeInformation.percentage" maxlength="2" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-3 settingTop">
+                        PromoText
+                    </div>
+                    <div class="col-sm-9">
+                        <textarea class="form-control" rows="5" id="message" placeholder="Message" name="message"
+                                  ng-model="pCode.promoCodeInformation.promoMessage" maxlength="250" minlength="10" style="resize: none" required></textarea>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-offset-8 col-sm-4">
+                        <div class="button-wrapper">
+                            <button type="submit" class="btn btn-md btn-block btn-success">Save</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
