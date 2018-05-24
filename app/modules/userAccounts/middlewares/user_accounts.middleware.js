@@ -26,16 +26,32 @@ let validateSignupParams = (req, res, next) => {
 let validateLoginParams = (req, res, next) => {
     req.assert('email', 5000).notEmpty();
     req.assert('email', 5001).isEmail();
-    req.assert('password', 5002).notEmpty();
-    req.assert('userType', 5037).notEmpty();
-    req.assert('userType', 5031).isUserTypeValid();
-    req.assert('deviceType', 5008).isValidDeviceType();
-    req.assert('deviceToken', 5054).notEmpty();
+    req.assert('password', 5007).notEmpty();
+    req.assert('userType', 5009).notEmpty();
+    req.assert('userType', 5009).isUserTypeValid();
+
 
     commonLib.validationResponse('User could not be logged in', req, next);
 };
 
-module.exports = {
-    validateSignupParams
+let facebookLogInValidate = (req, res, next) => {
+    req.assert('access_token', 5026).notEmpty();
+    req.assert('userType', 5009).notEmpty();
 
+    commonLib.validationResponse('User could not perform facebook login.', req, next);
+};
+
+let validateUpdateEmailPasswordParams = (req, res, next) => {
+    req.assert('userType', 5009).notEmpty();
+    req.assert('newPassword', 5007).notEmpty();
+    req.assert('newPassword', 5008).isPasswordValid();
+    req.assert('facebookId', 5121).notEmpty();
+
+    commonLib.validationResponse('User could not perform reset password action.', req, next);
+};
+module.exports = {
+    validateSignupParams,
+    validateLoginParams,
+    facebookLogInValidate,
+    validateUpdateEmailPasswordParams
 };

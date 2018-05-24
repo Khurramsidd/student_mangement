@@ -10,7 +10,7 @@ let loggerSchema = new schema({
     priority: { type: String, required: true, enum: ['low', 'normal', 'high', 'critical'] },
     message: { type: String, required: true },
     data: {},
-    userType: { type: String, enum: ['user', 'sp', 'admin'], required: true },
+    userType: { type: String, enum: ['user', 'student', 'admin'], required: true },
     userId: { type: String },
     ipAddress: { type: String }
 });

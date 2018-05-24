@@ -14,7 +14,9 @@ let basicUserData = {
     gender: { type: String, enum: config.genderTypes },
     salt: { type: String },
     password: { type: String },
-    langPreference: { type: Number }
+    langPreference: { type: Number },
+    sessionId: { type: String, default: '' }
+
 };
 
 

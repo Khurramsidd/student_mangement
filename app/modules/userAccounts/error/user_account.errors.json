@@ -65,10 +65,22 @@
       "FR": "french msg"
     }
   },
+  "5026": {
+    "msg": {
+      "EN": "Access Token is required.",
+      "FR": "Le jeton d'accès est requis."
+    }
+  },
   "5036": {
     "msg": {
       "EN": "Error occured in user sign up.",
       "FR": "Une erreur s'est produite lors de l'inscription de l'utilisateur."
+    }
+  },
+  "5050": {
+    "msg": {
+      "EN": "This email account does not exist with provided userType.",
+      "FR": "Ce compte de messagerie n'existe pas avec userType fourni."
     }
   },
   "5052": {
@@ -81,6 +93,18 @@
     "msg": {
       "EN": "There was some error in user login.",
       "FR": "Il y a eu une erreur dans la connexion de l'utilisateur."
+    }
+  },
+  "5108": {
+    "msg": {
+      "EN": "Error occurred during facebook login user creation.",
+      "FR": "S'il vous plaît fournir un nom de famille valide."
+    }
+  },
+  "5121": {
+    "msg": {
+      "EN": "Please enter facebookId.",
+      "FR": "Veuillez entrer facebookId."
     }
   }
 }
