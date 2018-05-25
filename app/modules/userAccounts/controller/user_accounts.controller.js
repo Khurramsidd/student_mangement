@@ -1,10 +1,6 @@
 const
     passport = require('passport'),
-    moment = require('moment'),
-    mongoose = require('mongoose'),
     _ = require('lodash'),
-    multer = require('../../../../config/multer'),
-    pushNotification = require('../../../../config/notifications'),
     responseModule = require('../../../../config/response'),
     commonLib = require('../../globals/global.library'),
     userHelper = require('./helpers/user_accounts.helper'),
@@ -26,10 +22,12 @@ let signUpStepOne = (req, res, next) => {
                 isUser: true,
                 'userData.firstName': firstName,
                 'userData.lastName': lastName,
+                'userData.name' : _.trim(req.body.firstName) + ' ' + _.trim(req.body.lastName),
                 'userData.langPreference': langPreference,
                 'userData.password': maskedPassword.password,
                 'userData.salt': maskedPassword.salt,
-                'userData.gender': gender
+                'userData.gender': gender,
+                'userData.userType': userType
             };
             return userHelper.findAndUpdateUserAccount({email: email}, userObj, {
                 upsert: true,
@@ -46,11 +44,11 @@ let signUpStepOne = (req, res, next) => {
 
 
                 } else {
-                    logController.createLog('error', 'high', req.body.email + ' tried to signup but failed ', 'user', 'signup', {err}, req.clientIp);
+                    logController.createLog('error', 'high', req.body.email + ' tried to signup but failed ', userType, 'signup', {err}, req.clientIp);
                     return next({msgCode: 5036});
                 }
             }).catch(err => {
-                logController.createLog('error', 'high', req.body.email + ' tried to signup but failed ', 'user', 'signup', {err}, req.clientIp);
+                logController.createLog('error', 'high', req.body.email + ' tried to signup but failed ', 'user', userType, {err}, req.clientIp);
                 return next({msgCode: 5036});
             });
         } else {
@@ -159,11 +157,50 @@ let facebookLogIn = (req, res, next) => {
         return next({ msgCode: 5108 });
     }
 };
+let updateEmailAndPassword = (req, res, next) => {
+    let password = req.body.newPassword,
+        userType = req.body.userType,
+        updatedObj = {};
+    return commonLib.saltPassword(password, (err, maskedPassword) => {
+        if ( maskedPassword ) {
+            if ( userType === 'user' ) {
+                updatedObj = {
+                    'userData.password': maskedPassword.password,
+                    'userData.salt': maskedPassword.salt,
+                    'userData.facebookPasswordUpdate': false,
+                };
+                if ( req.body.email ) {
+                    updatedObj.email = req.body.email;
+                    Object.assign(updatedObj, {
+                        'userData.facebookEmailUpdate': false
+                    });
+                }
+            }
+            return userHelper.findAndUpdateUserAccount({ 'userData.facebookId': req.body.facebookId }, updatedObj, { new: true }).then(updatedUser => {
+                if ( !updatedUser ) {
+                    return next({ msgCode: 5094 });
+                }
+                logController.createLog('info', 'normal', req.body.facebookId + ' has reset password successfully', userType, req.user._id, {}, req.clientIp);
+                return responseModule.successResponse(res, {
+                    success: 1,
+                    message: 'Facebook Password is updated successfully.',
+                    data: {}
+                });
+            }).catch(err => {
+                return next({ msgCode: 5094 });
+            });
+        } else {
+            return next({ msgCode: 5052 });
+        }
+    });
+};
+
 module.exports = {
     signUpStepOne,
     accountLogin,
     loginSuccessResponse,
     signupSuccessResponse,
     logoutAccount,
-    facebookLogIn
+    facebookLogIn,
+    updateEmailAndPassword
 };

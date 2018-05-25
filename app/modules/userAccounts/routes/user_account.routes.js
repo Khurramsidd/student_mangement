@@ -32,13 +32,13 @@ module.exports = (app, version) => {
         userHelper.enForceSingleSession,
         userController.loginSuccessResponse
     );
-    // app.post(
-    //     version + '/add/email/password',
-    //     passport.isAuthenticated,
-    //     passport.isAuthorized('user'),
-    //     userMiddleWare.validateUpdateEmailPasswordParams,
-    //     commonLib.fetchIPAdress,
-    //     userHelper.isAllowedToAddPassword,
-    //     userController.updateEmailAndPassword
-    // );
+    app.post(
+        version + '/add/email/password',
+        passport.isAuthenticated,
+        passport.isAuthorized('user'),
+        userMiddleWare.validateUpdateEmailPasswordParams,
+        commonLib.fetchIPAdress,
+        userHelper.isAllowedToAddPassword,
+        userController.updateEmailAndPassword
+    );
 };

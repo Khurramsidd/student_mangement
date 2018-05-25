@@ -199,10 +199,9 @@ passport.deserializeUser((_id, done) => {
                 _id: user._id,
                 email: user.email,
                 userData: user.userData,
-                studentData: user.studentData,
                 isAdmin: user.isAdmin,
                 createdAt: user.createdAt,
-                isSP: user.isSP,
+                isUser: user.isUser,
             });
         }
     });
@@ -238,7 +237,7 @@ passport.isAuthorized = userType => {
             } else {
                return next({ msgCode: '0004' });
             }
-        } else if (userType === 'sp'){
+        } else if (userType === 'student'){
            if (req.user.studentData.sessionId === sessionId){
                 return next();
             } else {
@@ -255,17 +254,5 @@ passport.isAuthorized = userType => {
     };
 };
 
-passport.differentiateUserType = (req, res, next) => {
-    let sessionId = req.sessionID;
-    if (req.user.userData.sessionId === sessionId){
-        req.user.studentData = {};
-        req.user.userType = 'user';
-    } else if ( req.user.studentData.sessionId === sessionId ) {
-        req.user.userData = {};
-        req.user.userType = 'sp';
-    }
-
-    return next();
-};
 
 module.exports = passport;

@@ -1,8 +1,6 @@
-const randomize = require('randomatic'),
+const
     mongoose = require('mongoose'),
-    moment = require('moment'),
-    userAccount = mongoose.model('userAccount'),
-    commonLib = require('../../../globals/global.library');
+    userAccount = mongoose.model('userAccount');
 
 let queryUser = (queryObject, projectObject) => {
     return userAccount.findOne(queryObject, projectObject).lean().then(userFound => {
@@ -77,27 +75,27 @@ let enForceSingleSession = (req, res, next) => {
 let isAllowedToAddPassword = (req, res, next) => {
     let userType = req.body.userType;
 
-    return queryUser({ $and: [ { 'userData.facebookId': req.body.facebookId }, { 'userData.facebookPasswordUpdate': true } ] }).then(userFound => {
-        if ( !userFound ) {
-            return next({ msgCode: 5122 });
+    return queryUser({$and: [{'userData.facebookId': req.body.facebookId}, {'userData.facebookPasswordUpdate': true}]}).then(userFound => {
+        if (!userFound) {
+            return next({msgCode: 5122});
         }
-        if ( userType === 'user' ) {
-            if ( userFound.userData.facebookEmailUpdate ) {
-                if ( req.body.email ) {
+        if (userType === 'user') {
+            if (userFound.userData.facebookEmailUpdate) {
+                if (req.body.email) {
                     return next();
                 } else {
-                    return next({ msgCode: 5000 });
+                    return next({msgCode: 5000});
                 }
             } else {
-                if ( req.body.email ) {
-                    return next({ msgCode: 5131 });
+                if (req.body.email) {
+                    return next({msgCode: 5131});
                 } else {
                     return next();
                 }
             }
         }
     }).catch(err => {
-        return next({ msgCode: 5090 });
+        return next({msgCode: 5090});
     });
 };
 
