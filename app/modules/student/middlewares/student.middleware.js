@@ -18,8 +18,17 @@ let validateAddStudentParams = (req, res, next) => {
 
     commonLib.validationResponse('User could not add student', req, next);
 };
+let validateGetStudentParams = (req, res, next) => {
+    if (req.body.email) {
+        req.body.email = req.body.email.toLowerCase();
+    }
+    req.assert('email', 5000).notEmpty();
+    req.assert('email', 5001).isEmail();
+    commonLib.validationResponse('User could not get student', req, next);
+};
 
 
 module.exports = {
     validateAddStudentParams,
+    validateGetStudentParams
 };

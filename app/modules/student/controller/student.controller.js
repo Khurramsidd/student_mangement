@@ -37,8 +37,63 @@ let addStudent = (req, res, next) => {
         return next({msgCode: 6000});
     });
 };
+let getStudent = (req, res, next) => {
+    const email = _.trim(req.params.email).toLowerCase(),
+        fields = {
+            email: 1,
+            firstName: 1,
+            lastName: 1,
+            name: 1
+        };
+
+    return studentHelper.queryUser({email: email}, fields).then(student => {
+        if (student) {
+            responseModule.successResponse(res, {
+                success: 1,
+                message: 'Student fetch successfully.',
+                data: studentHelper.generateStudentResponse(student) || {}
+            });
+        } else {
+            return next({msgCode: 6002});
+        }
+    }).catch(err => {
+        logController.createLog('error', 'high', req.body.email + ' tried to fetch student but failed', req.user.userData.userType, req.user._id, {err}, req.clientIp);
+        return next({msgCode: 6001});
+    });
+};
+
+let getAllStudent = (req, res, next) => {
+    const
+        fields = {
+            email: 1,
+            firstName: 1,
+            lastName: 1,
+            name: 1
+        };
+
+    return studentHelper.fetchStudents({}, fields, parseInt(req.params.limit), parseInt(req.params.offset) ).then(students => {
+        if (students) {
+            let studentsArry = [];
+            students.forEach(student => {
+                studentsArry.push(studentHelper.generateStudentResponse(student) || {});
+            });
+            responseModule.successResponse(res, {
+                success: 1,
+                message: 'Student list fetch successfully.',
+                data: studentsArry
+            });
+        } else {
+            return next({msgCode: 6002});
+        }
+    }).catch(err => {
+        logController.createLog('error', 'high', req.body.email + ' tried to fetch student list but failed', req.user.userData.userType, req.user._id, {err}, req.clientIp);
+        return next({msgCode: 6001});
+    });
+};
 
 
 module.exports = {
-    addStudent
+    addStudent,
+    getStudent,
+    getAllStudent
 };

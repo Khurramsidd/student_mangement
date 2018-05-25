@@ -1,5 +1,5 @@
 const studentMiddleWare = require('../middlewares/student.middleware'),
-    studentHelper = require('../controller/helpers/student.helper'),
+    // studentHelper = require('../controller/helpers/student.helper'),
     studentController = require('../controller/student.controller'),
     commonLib = require('../../globals/global.library'),
     passport = require('../../../../config/passport');
@@ -19,6 +19,19 @@ module.exports = (app, version) => {
         studentMiddleWare.validateAddStudentParams,
         commonLib.fetchIPAdress,
         studentController.addStudent
+    );
+    app.get(version + '/get/student/:email',
+        passport.isAuthenticated,
+        passport.isAuthorized('user'),
+        studentMiddleWare.validateGetStudentParams,
+        commonLib.fetchIPAdress,
+        studentController.getStudent
+    );
+    app.get(version + '/getAll/student/:limit/:offset',
+        passport.isAuthenticated,
+        passport.isAuthorized('user'),
+        commonLib.fetchIPAdress,
+        studentController.getAllStudent
     );
 
 };

@@ -27,9 +27,20 @@ let generateStudentResponse = (student) => {
             email: student.email,
         };
 };
-
+let fetchStudents = (queryObject, projectObject, limit, offset) => {
+    return student.find(queryObject, projectObject).lean().sort({createdAt: -1}).skip(offset || 0).limit(limit || 10).lean().then(studentList => {
+        if (studentList) {
+            return studentList;
+        } else {
+            return;
+        }
+    }).catch(err => {
+        return err.msgCode = 6003;
+    });
+};
 module.exports = {
     queryUser,
     findAndUpdateStudent,
-    generateStudentResponse
+    generateStudentResponse,
+    fetchStudents
 };

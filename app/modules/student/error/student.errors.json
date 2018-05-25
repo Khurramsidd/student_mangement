@@ -2,7 +2,25 @@
   "6000": {
     "msg": {
       "EN": "Error in add or edit Student.",
-      "FR": "Le jeton d'accès est requis."
+      "FR": "Dummy."
+    }
+  },
+  "6001": {
+    "msg": {
+      "EN": "Error in fetching.",
+      "FR": "Dummy."
+    }
+  },
+  "6002": {
+    "msg": {
+      "EN": "Student with this email does not exists.",
+      "FR": "Dummy."
+    }
+  },
+  "6003": {
+    "msg": {
+      "EN": "Error in fetching student List.",
+      "FR": "Dummy."
     }
   }
 }
