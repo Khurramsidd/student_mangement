@@ -18,10 +18,10 @@ let generateAccountResponse = (user, userType) => {
             lastName: user.userData.lastName || '',
             email: user.email,
             userType: userType,
-            langPreference: user.userData.langPreference
-            /*  facebookId: user.userData.facebookId,
-              facebookEmailUpdate: user.userData.facebookEmailUpdate,
-              facebookPasswordUpdate: user.userData.facebookPasswordUpdate,*/
+            langPreference: user.userData.langPreference,
+            facebookId: user.userData.facebookId,
+            facebookEmailUpdate: user.userData.facebookEmailUpdate,
+            facebookPasswordUpdate: user.userData.facebookPasswordUpdate,
         };
     } else {
         return;

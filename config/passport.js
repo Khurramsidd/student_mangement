@@ -123,9 +123,6 @@ passport.use(new FacebookTokenStrategy({
                                 'userData.lastName': profile.name.familyName,
                                 'userData.isFacebookAccount': true,
                                 'userData.phoneNumber': '',
-                                'userData.deviceType': req.body.deviceType,
-                                'userData.deviceToken': req.body.deviceToken,
-                                'userData.profileImage': profile.photos[ 0 ].value,
                                 'userData.facebookPasswordUpdate': true
                             }, email = (profile.emails[ 0 ].value || '').toLowerCase();
 
@@ -158,9 +155,6 @@ passport.use(new FacebookTokenStrategy({
                                 'userData.lastName': profile.name.familyName,
                                 'userData.isFacebookAccount': true,
                                 'userData.phoneNumber': '',
-                                'userData.deviceType': req.body.deviceType,
-                                'userData.deviceToken': req.body.deviceToken,
-                                'userData.profileImage': profile.photos[ 0 ].value,
                                 'userData.facebookEmailUpdate': true,
                                 'userData.facebookPasswordUpdate': true
                             }, email = (profile.emails[ 0 ].value || randomstring.generate(7) + '@dummy.com').toLowerCase();
