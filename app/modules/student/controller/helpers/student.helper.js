@@ -20,12 +20,12 @@ let findAndUpdateStudent = (queryObject, updatedObj, newDoc) => {
 };
 
 let generateStudentResponse = (student) => {
-        return {
-            id: student._id,
-            firstName: student.firstName || '',
-            lastName: student.lastName || '',
-            email: student.email,
-        };
+    return {
+        id: student._id,
+        firstName: student.firstName || '',
+        lastName: student.lastName || '',
+        email: student.email,
+    };
 };
 let fetchStudents = (queryObject, projectObject, limit, offset) => {
     return student.find(queryObject, projectObject).lean().sort({createdAt: -1}).skip(offset || 0).limit(limit || 10).lean().then(studentList => {

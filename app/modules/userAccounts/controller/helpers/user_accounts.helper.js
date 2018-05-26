@@ -29,7 +29,7 @@ let generateAccountResponse = (user, userType) => {
 };
 
 let findAndUpdateUserAccount = (queryObject, updatedObj, newDoc) => {
-    return userAccount.findOneAndUpdate(queryObject, {$set: updatedObj}, newDoc).then(updatedUser => {
+    return userAccount.findOneAndUpdate(queryObject, { $set: updatedObj }, newDoc).then(updatedUser => {
         return updatedUser;
     }).catch(err => {
         return;
@@ -38,12 +38,12 @@ let findAndUpdateUserAccount = (queryObject, updatedObj, newDoc) => {
 
 let enForceSingleSession = (req, res, next) => {
     let userType = req.body.userType;
-    return queryUser({_id: req.user._id}).then(acct => {
+    return queryUser({ _id: req.user._id }).then(acct => {
         if (!acct) {
-            return next({msgCode: 5043});
+            return next({ msgCode: 5043 });
         }
         if (userType === 'user' && !acct.isUser) {
-            return next({msgCode: 5050});
+            return next({ msgCode: 5050 });
         }
 
 
@@ -53,15 +53,15 @@ let enForceSingleSession = (req, res, next) => {
             delete req.session[sessionId];
             req.sessionStore.destroy(sessionId, err => {
                 if (err) {
-                    return next({msgCode: 5127});
+                    return next({ msgCode: 5127 });
                 }
                 let updatedObj = {};
                 if (userType === 'user') {
-                    updatedObj = {'userData.sessionId': req.sessionID};
+                    updatedObj = { 'userData.sessionId': req.sessionID };
                 }
-                return findAndUpdateUserAccount({_id: req.user._id}, updatedObj, {new: true}).then(updatedUser => {
+                return findAndUpdateUserAccount({ _id: req.user._id }, updatedObj, { new: true }).then(updatedUser => {
                     if (!updatedUser) {
-                        return next({msgCode: 5128});
+                        return next({ msgCode: 5128 });
                     }
                     return next();
                 });
@@ -75,27 +75,27 @@ let enForceSingleSession = (req, res, next) => {
 let isAllowedToAddPassword = (req, res, next) => {
     let userType = req.body.userType;
 
-    return queryUser({$and: [{'userData.facebookId': req.body.facebookId}, {'userData.facebookPasswordUpdate': true}]}).then(userFound => {
+    return queryUser({ $and: [{ 'userData.facebookId': req.body.facebookId }, { 'userData.facebookPasswordUpdate': true }] }).then(userFound => {
         if (!userFound) {
-            return next({msgCode: 5122});
+            return next({ msgCode: 5122 });
         }
         if (userType === 'user') {
             if (userFound.userData.facebookEmailUpdate) {
                 if (req.body.email) {
                     return next();
                 } else {
-                    return next({msgCode: 5000});
+                    return next({ msgCode: 5000 });
                 }
             } else {
                 if (req.body.email) {
-                    return next({msgCode: 5131});
+                    return next({ msgCode: 5131 });
                 } else {
                     return next();
                 }
             }
         }
     }).catch(err => {
-        return next({msgCode: 5090});
+        return next({ msgCode: 5090 });
     });
 };
 

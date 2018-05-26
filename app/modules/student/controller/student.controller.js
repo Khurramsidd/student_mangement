@@ -71,7 +71,7 @@ let getAllStudent = (req, res, next) => {
             name: 1
         };
 
-    return studentHelper.fetchStudents({}, fields, parseInt(req.params.limit), parseInt(req.params.offset) ).then(students => {
+    return studentHelper.fetchStudents({}, fields, parseInt(req.params.limit), parseInt(req.params.offset)).then(students => {
         if (students) {
             let studentsArry = [];
             students.forEach(student => {

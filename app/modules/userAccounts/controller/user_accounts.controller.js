@@ -22,14 +22,14 @@ let signUpStepOne = (req, res, next) => {
                 isUser: true,
                 'userData.firstName': firstName,
                 'userData.lastName': lastName,
-                'userData.name' : _.trim(req.body.firstName) + ' ' + _.trim(req.body.lastName),
+                'userData.name': _.trim(req.body.firstName) + ' ' + _.trim(req.body.lastName),
                 'userData.langPreference': langPreference,
                 'userData.password': maskedPassword.password,
                 'userData.salt': maskedPassword.salt,
                 'userData.gender': gender,
                 'userData.userType': userType
             };
-            return userHelper.findAndUpdateUserAccount({email: email}, userObj, {
+            return userHelper.findAndUpdateUserAccount({ email: email }, userObj, {
                 upsert: true,
                 new: true,
                 setDefaultsOnInsert: true
@@ -39,20 +39,20 @@ let signUpStepOne = (req, res, next) => {
                         if (err) {
                             return next({ msgCode: 5055 });
                         }
-                       next();
+                        next();
                     });
 
 
                 } else {
-                    logController.createLog('error', 'high', req.body.email + ' tried to signup but failed ', userType, 'signup', {err}, req.clientIp);
-                    return next({msgCode: 5036});
+                    logController.createLog('error', 'high', req.body.email + ' tried to signup but failed ', userType, 'signup', { err }, req.clientIp);
+                    return next({ msgCode: 5036 });
                 }
             }).catch(err => {
-                logController.createLog('error', 'high', req.body.email + ' tried to signup but failed ', 'user', userType, {err}, req.clientIp);
-                return next({msgCode: 5036});
+                logController.createLog('error', 'high', req.body.email + ' tried to signup but failed ', 'user', userType, { err }, req.clientIp);
+                return next({ msgCode: 5036 });
             });
         } else {
-            return next({msgCode: 5052});
+            return next({ msgCode: 5052 });
         }
     });
 };
@@ -61,18 +61,18 @@ let accountLogin = (req, res, next) => {
     let userType = req.body.userType;
 
     passport.authenticate(userType, (err, user, info) => {
-        if ( err ) {
-            if ( err.msgCode ) {
+        if (err) {
+            if (err.msgCode) {
                 return next(err);
             } else {
                 return next({ msgCode: 5055 });
             }
         }
-        if ( !user ) {
+        if (!user) {
             return next(info);
         }
         req.logIn(user, err => {
-            if ( err ) {
+            if (err) {
                 return next({ msgCode: 5055 });
             }
             req.acct = user;
@@ -94,7 +94,7 @@ let loginSuccessResponse = (req, res, next) => {
 let signupSuccessResponse = (req, res, next) => {
     logController.createLog('info', 'normal', req.user.email + ' has sign up successfully', req.body.userType, '', {}, req.clientIp);
 
-   responseModule.successResponse(res, {
+    responseModule.successResponse(res, {
         success: 1,
         message: 'User signup completed successfully.',
         data: userHelper.generateAccountResponse(req.user, req.body.userType) || {}
@@ -138,22 +138,22 @@ let logoutAccount = (req, res, next) => {
 
 let facebookLogIn = (req, res, next) => {
     try {
-        passport.authenticate('facebook-token', { scope: [ 'email' ] }, (err, user, info) => {
-            if ( err ) {
+        passport.authenticate('facebook-token', { scope: ['email'] }, (err, user, info) => {
+            if (err) {
                 return next({ msgCode: 5108 });
             }
-            if ( !user ) {
+            if (!user) {
                 return next(info);
             }
 
             req.logIn(user, (err) => {
-                if ( err ) {
+                if (err) {
                     return next({ msgCode: 5055 });
                 }
                 return next();
             });
         })(req, res, next);
-    } catch ( err ) {
+    } catch (err) {
         return next({ msgCode: 5108 });
     }
 };
@@ -162,14 +162,14 @@ let updateEmailAndPassword = (req, res, next) => {
         userType = req.body.userType,
         updatedObj = {};
     return commonLib.saltPassword(password, (err, maskedPassword) => {
-        if ( maskedPassword ) {
-            if ( userType === 'user' ) {
+        if (maskedPassword) {
+            if (userType === 'user') {
                 updatedObj = {
                     'userData.password': maskedPassword.password,
                     'userData.salt': maskedPassword.salt,
                     'userData.facebookPasswordUpdate': false,
                 };
-                if ( req.body.email ) {
+                if (req.body.email) {
                     updatedObj.email = req.body.email;
                     Object.assign(updatedObj, {
                         'userData.facebookEmailUpdate': false
@@ -177,7 +177,7 @@ let updateEmailAndPassword = (req, res, next) => {
                 }
             }
             return userHelper.findAndUpdateUserAccount({ 'userData.facebookId': req.body.facebookId }, updatedObj, { new: true }).then(updatedUser => {
-                if ( !updatedUser ) {
+                if (!updatedUser) {
                     return next({ msgCode: 5094 });
                 }
                 logController.createLog('info', 'normal', req.body.facebookId + ' has reset password successfully', userType, req.user._id, {}, req.clientIp);
