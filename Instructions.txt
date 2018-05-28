@@ -1,0 +1,12 @@
+1. Clone the project from git hub.
+2. Run  npm install in directory
+3. Postman collection url is shared. import it from URL.
+ you can test the API from  the collection.
+ 1. There is signup  api that will create new user.
+ 2. Then you can login into the Student management system.
+ 3.There is another option of faceboook login you can login with facebook access token.
+ 4.Tthere is a logout api.
+ 5.You can get student list with pagination.
+ 6.You can get student by Email.
+ 7.You can Add new student.
+ 8.You can edit student.
