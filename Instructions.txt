@@ -1,6 +1,7 @@
 1. Clone the project from git hub.
 2. Run  npm install in directory
 3. Postman collection url is shared. import it from URL.
+Postman Collection : https://www.getpostman.com/collections/d567353ea2ec0c607596
  you can test the API from  the collection.
  1. There is signup  api that will create new user.
  2. Then you can login into the Student management system.
